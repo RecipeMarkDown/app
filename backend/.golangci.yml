@@ -1,0 +1,29 @@
+linters:
+  enable:
+    - gofmt
+    - goimports
+    - govet
+    - gosimple
+    - staticcheck
+    - errcheck
+    - ineffassign
+    - unconvert
+
+run:
+  timeout: 5m
+  skip-dirs:
+    - vendor
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck
+
+linters-settings:
+  gofmt:
+    simplify: true
+    tabwidth: 4
+
+  goimports:
+    local-prefixes: "github.com/recipemarkdown/app/backend"

@@ -1,0 +1,31 @@
+{
+  "name": "recipe-markdown-app",
+  "private": true,
+  "version": "0.0.1",
+  "description": "Monorepo with Vite React Frontend and Go Gin Backend",
+  "scripts": {
+    "dev": "concurrently \"npm run frontend:dev\" \"npm run backend:dev\"",
+    "build": "npm run frontend:build && npm run backend:build",
+    "lint": "concurrently \"npm run frontend:lint\" \"cd backend && golangci-lint run\"",
+    "format": "concurrently \"npm run frontend:format\" \"npm run backend:format\"",
+    "postinstall": "cd frontend && npm install && cd ../backend && go mod download && npm run backend:setup",
+
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:preview": "cd frontend && npm run preview",
+    "frontend:lint": "cd frontend && npm run lint",
+    "frontend:format": "cd frontend && npm run format",
+
+    "backend:dev": "cd backend && air --build.cmd=\"go build -o tmp/main.exe cmd/server/main.go\"",
+    "backend:build": "cd backend && go build -o bin/main cmd/server/main.go",
+    "backend:lint": "cd backend && golangci-lint run ./...",
+    "backend:format": "cd backend && gofmt -w .",
+    "backend:setup": "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest && go install github.com/air-verse/air@latest"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
