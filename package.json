@@ -16,7 +16,7 @@
     "frontend:lint": "cd frontend && npm run lint",
     "frontend:format": "cd frontend && npm run format",
 
-    "backend:dev": "cd backend && air --build.cmd=\"go build -o tmp/main.exe cmd/server/main.go\" --build.bin=\"./tmp/main.exe\"",
+    "backend:dev": "cd backend && air",
     "backend:build": "cd backend && go build -o bin/main cmd/server/main.go",
     "backend:lint": "cd backend && golangci-lint run ./...",
     "backend:format": "cd backend && gofmt -w .",
