@@ -1,13 +1,17 @@
+version: "2"
+
 linters:
   enable:
-    - gofmt
-    - goimports
     - govet
-    - gosimple
     - staticcheck
     - errcheck
     - ineffassign
     - unconvert
+
+formatters:
+  enable:
+    - gofmt
+    - goimports
 
 run:
   timeout: 5m
