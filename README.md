@@ -70,6 +70,10 @@ go version
 During development, .env files are used to store environment variables for both the frontend and backend applications. These files are not included in the repository for security reasons, but you can create them yourself based on the provided `.env.example` files. Currently, only the backend application uses any and it's only the port number, so you can ignore this for now.
 The `.env` files are used to store sensitive information such as API keys, database connection strings, and other configuration settings that should not be shared publicly.
 
+#### Clone the Repository
+
+Click the large green "<> Code" button on the top right of the files in this page. Copy the HTTPS link, if you have an SSH key you can use the SSH version; you can learn more about that [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account). Head to the directory you want to clone the app into and type `git clone link`. Now you can go into the directory and follow the next steps.
+
 #### Running the application
 
 To run the application, you must first install the dependencies for both the frontend and backend applications. You can do this by running the following commands in the root directory of the project:
