@@ -3,11 +3,13 @@ package routes
 import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	"gorm.io/gorm"
 
 	"github.com/recipemarkdown/app/backend/internal/handlers"
 )
 
-func SetupRouter() *gin.Engine {
+// We pass in our db, from there we pass to the APIs
+func SetupRouter(db *gorm.DB) *gin.Engine {
 	r := gin.Default()
 
 	// allow requests from vite in local development (no reverse proxy)
@@ -22,6 +24,12 @@ func SetupRouter() *gin.Engine {
 	{
 		// e.g. GET /api/test is handled by handlers.HelloHandler
 		api.GET("/test", handlers.HelloHandler)
+
+		// User routes
+		api.POST("/users", handlers.CreateUser(db))
+		api.GET("/users/:id", handlers.GetUserByID(db))
+		api.GET("/users", handlers.GetUsers(db))
+		api.PUT("/users/:id", handlers.UpdateUser(db))
 	}
 
 	return r
