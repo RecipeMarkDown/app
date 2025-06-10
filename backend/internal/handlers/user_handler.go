@@ -62,6 +62,23 @@ func GetUserByGoogleID(db *gorm.DB) gin.HandlerFunc {
 	}
 }
 
+// Simple handler for query-based lookups
+func GetUsers(db *gorm.DB) gin.HandlerFunc {
+	return func(c *gin.Context) {
+		email := c.Query("email")
+		googleID := c.Query("google_id")
+
+		switch {
+		case email != "":
+			GetUserByEmail(db)(c)
+		case googleID != "":
+			GetUserByGoogleID(db)(c)
+		default:
+			c.JSON(400, gin.H{"error": "Please specify email or google_id parameter"})
+		}
+	}
+}
+
 // Update - PUT /users/:id
 func UpdateUser(db *gorm.DB) gin.HandlerFunc {
 	return func(c *gin.Context) {

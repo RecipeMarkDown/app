@@ -28,8 +28,7 @@ func SetupRouter(db *gorm.DB) *gin.Engine {
 		// User routes
 		api.POST("/users", handlers.CreateUser(db))
 		api.GET("/users/:id", handlers.GetUserByID(db))
-		api.GET("/users/email/:email", handlers.GetUserByEmail(db))
-		api.GET("/users/google/:google_id", handlers.GetUserByGoogleID(db))
+		api.GET("/users", handlers.GetUsers(db))
 		api.PUT("/users/:id", handlers.UpdateUser(db))
 	}
 
