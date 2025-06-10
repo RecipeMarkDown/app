@@ -14,7 +14,14 @@ func main() {
 	// get port from environment variable with fallback to 8000
 	port := config.GetEnv("PORT", "8000")
 
-	r := routes.SetupRouter()
+	db, err := config.ConnectDatabase()
+	if err != nil {
+		log.Fatal("Database connection failed:", err)
+	}
+
+	r := routes.SetupRouter(db)
+
+	log.Println("Database setup and ready")
 
 	log.Printf("Starting server on port %s", port)
 	if err := r.Run(":" + port); err != nil {
